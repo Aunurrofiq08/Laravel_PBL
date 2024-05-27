@@ -24,15 +24,17 @@ class StoreKegiatanRequest extends FormRequest
     {
         $this->merge([
             'kader_id' => auth()->user()->kaders[0]->kader_id,
-            'tgl_kegiatan' => Carbon::create($this->input('year'), $this->input('month'), $this->input('day'))->format('Y-m-d')
         ]);
-        $this->request->replace($this->only([
-            'kader_id',
-            'nama',
-            'tgl_kegiatan',
-            'jam_mulai',
-            'tempat'
-        ]));
+
+        $this->request->replace(
+            $this->only([
+                'kader_id',
+                'nama',
+                'tgl_kegiatan',
+                'jam_mulai',
+                'tempat'
+            ])
+        );
     }
 
     /**
@@ -53,8 +55,7 @@ class StoreKegiatanRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                'max:100',
-                'min:5'
+                'regex:/^[a-zA-Z\s.]{5,100}$/',
             ],
             'tgl_kegiatan' => [
                 'bail',
@@ -70,8 +71,7 @@ class StoreKegiatanRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                'max:200',
-                'min:5'
+                'regex:/^([\w\s\n.]{5,200})$/',
             ]
         ];
     }
