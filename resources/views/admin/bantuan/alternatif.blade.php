@@ -27,11 +27,28 @@
             @csrf
             <div class="mx-10 my-[30px]">
                 <x-table.data-table :dt="$alternatifs"
-                                    :headers="['Nama Balita', 'Berat Badan', 'Tinggi Badan', 'Lingkar Kepala', 'Lingkar Lengan', 'Total Pendapatan', 'Aksi']">
-                    @foreach ($bayisData as $alt)
+                                    :headers="['Pilih', 'Nama Balita', 'Berat Badan', 'Tinggi Badan', 'Lingkar Kepala', 'Lingkar Lengan', 'Total Pendapatan', 'Aksi']">
+                    @foreach ($alternatifs as $alt)
                         <x-table.table-row>
                             <td class="tableBody">
                                 <input type="checkbox" name="penduduk_id[]" id="" value="{{$alt->penduduk_id}}">    
+                            </td>
+                            <td class="tableBody">
+                                {{$alt->nama}}
+                            </td>
+                            <td class="tableBody">{{$alt->berat_badan}}</td>
+                            <td class="tableBody">{{$alt->tinggi_badan}}</td>
+                            <td class="tableBody">{{$alt->lingkar_kepala}}</td>
+                            <td class="tableBody">{{$alt->lingkar_lengan}}</td>
+                            <td class="tableBody">Rp.300.000</td>
+                            <td class="tableBody">
+                                <a href="bantuan/{{$alt->kode}}" class="bg-blue-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-blue-600 hover:text-white">Detail</a>
+                        </x-table.table-row>
+                        {{-- <x-table.table-row>
+                            <td class="tableBody">
+                                <input type="checkbox" name="penduduk_id[]" id="" value="{{$alt->penduduk_id}}">    
+                            </td>
+                            <td class="tableBody">
                                 {{$alt->penduduk->nama}}
                             </td>
                             <td class="tableBody">{{$alt->berat_badan}}</td>
@@ -41,7 +58,7 @@
                             <td class="tableBody">Rp.300.000</td>
                             <td class="tableBody">
                                 <a href="bantuan/{{$alt->kode}}" class="bg-blue-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-blue-600 hover:text-white">Detail</a>
-                        </x-table.table-row>
+                        </x-table.table-row> --}}
                     @endforeach
                 </x-table.data-table>
             </div>
@@ -54,6 +71,7 @@
 @endsection
 
 @push('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
     function clearTable() {
         const table = document.getElementById('dataTable');
@@ -126,15 +144,20 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        let div = document.getElementById('message');
-        let button = document.getElementById('close');
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     let div = document.getElementById('message');
+    //     let button = document.getElementById('close');
 
-        if (div && button) {
-            button.addEventListener('click', function() {
-                div.classList.add('hidden');
-            });
-        }
-    });
+    //     if (div && button) {
+    //         button.addEventListener('click', function() {
+    //             div.classList.add('hidden');
+    //         });
+    //     }
+    // });
+    $(document).ready(function (){
+        setTimeout(function() {
+            $('#message').fadeOut('fast');
+        }, 3000);
+    })
 </script>
 @endpush

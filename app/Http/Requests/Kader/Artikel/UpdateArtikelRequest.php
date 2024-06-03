@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Kader\Artikel;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateArtikelRequest extends FormRequest
 {
@@ -74,8 +75,49 @@ class UpdateArtikelRequest extends FormRequest
                 'nullable',
                 'image',
                 'mimes:jpeg,png,jpg,gif,svg',
-                'max:5048'
+                'max:700'
             ]
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            /**
+             * costum message for kader_id column or field input
+             */
+            'kader_id.required' => 'kader ID harus di isi!',
+            'kader_id.integer' => 'kader ID harus angka bulat!',
+            'kader_id.exists' => 'kader ID tidak ada!',
+            /**
+             * costum message for judul column or field input
+             */
+            'judul.required' => 'judul harus di isi!',
+            'judul.string' => 'judul harus berupa string!',
+            'judul.regex' => "judul minimal 5 dan maksimal 250 huruf serta tidak boleh ada tanda-tanda khusus!",
+            /**
+             * costum message for isi column or field input
+             */
+            'isi.required' => 'isi harus di isi!',
+            'isi.string' => 'isi harus berupa string!',
+            'isi.regex' => "isi minimal 30 dan maksimal 30.000 huruf serta tidak boleh ada tanda-tanda khusus!",
+            /**
+             * costum message for tag column or field input
+             */
+            'tag.required' => 'tag harus di isi!',
+            'tag.string' => 'tag harus berupa string!',
+            'tag.regex' => "tag maksimal 100 huruf serta tidak boleh ada tanda-tanda khusus!",
+            /**
+             * costum message for foto_artikel column or field input
+             */
+            'foto_artikel.image' => 'foto artikel harus berupa file foto!',
+            'foto_artikel.mimes' => "foto artikel hanya boleh mempunyai extension: .jpeg, .jpg, .png, .gif, .svg !",
+            'foto_artikel.max' => 'foto artikel maksimal berukuran 700 KiloBytes(KB) !'
         ];
     }
 
@@ -100,10 +142,11 @@ class UpdateArtikelRequest extends FormRequest
         $image = $this->file('foto_artikel');
         if (isset($image)) {
             $fileName = $image->hashName();
+            Storage::disk('artikel_img')->put($fileName, file_get_contents($image));
+
             $this->merge([
                 'foto_artikel' => $fileName
             ]);
-            $image->move(public_path('artikel'), $fileName);
         }
     }
 }
