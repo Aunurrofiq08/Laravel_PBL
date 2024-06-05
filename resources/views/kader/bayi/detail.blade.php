@@ -11,10 +11,15 @@
                 <tr>
                     <td>Kader Pengurus Data</td>
                     <td>:</td>
-                    <td>{{ $namaKader}}</td>
+                    <td>{{ $dataKader['nama'] }}</td>
                 </tr>
                 <tr>
-                    <td>Terahir data dirubah</td>
+                    <td>NIK Kader</td>
+                    <td>:</td>
+                    <td>{{ $dataKader['NIK'] }}</td>
+                </tr>
+                <tr>
+                    <td>Terahir Data Diubah</td>
                     <td>:</td>
                     <td>{{ now('Asia/Jakarta')->locale('id')->longRelativeToNowDiffForHumans($bayiData->updated_at)}}</td>
                 </tr>
