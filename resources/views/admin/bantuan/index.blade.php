@@ -1,6 +1,3 @@
-<div>
-    <!-- Order your soul. Reduce your wants. - Augustine -->
-</div>
 @extends('admin.layouts.template')
 
 @section('content')
@@ -8,53 +5,40 @@
         <div class="flex justify-between items-center w-full py-2 border-b">
             <p class="text-sm md:text-lg ml-5 md:ml-10">Data Kriteria</p>
         </div>
-            @if(session('success'))
-                <div class="flex items-center p-1 mb-1 border-2 border-green-500 bg-green-100 text-green-700 rounded-md" id="message">
-                    <p class="mr-4"> <b>BERHASIL</b> {{ session('success') }}</p>
-                    <button id="close" class="ml-auto bg-transparent text-green-700 hover:text-green-900">
-                        <span>&times;</span>
-                    </button>
-                </div>
-            @elseif(session('error'))
-                <div class="flex items-center p-4 mb-4 border-2 border-red-500 bg-red-100 text-red-700 rounded-md" id="message">
-                    <p class="mr-4">{{ session('error') }}</p>
-                    <button id="close" class="ml-auto bg-transparent text-red-700 hover:text-red-900">
-                        <span>&times;</span>
-                    </button>
-                </div>
-            @endif
+        @if(session('success'))
+            <div class="flex items-center p-1 mb-1 border-2 border-green-500 bg-green-100 text-green-700 rounded-md" id="message">
+                <p class="mr-4"> <b>BERHASIL</b> {{ session('success') }}</p>
+                <button id="close" class="ml-auto bg-transparent text-green-700 hover:text-green-900">
+                    <span>&times;</span>
+                </button>
+            </div>
+        @elseif(session('error'))
+            <div class="flex items-center p-4 mb-4 border-2 border-red-500 bg-red-100 text-red-700 rounded-md" id="message">
+                <p class="mr-4">{{ session('error') }}</p>
+                <button id="close" class="ml-auto bg-transparent text-red-700 hover:text-red-900">
+                    <span>&times;</span>
+                </button>
+            </div>
+        @endif
 
         <div class="mx-10 my-[30px]">
             <x-table.data-table :dt="$kriterias"
                                 :headers="['Kode Kriteria', 'Nama Kriteria', 'Bobot', 'Jenis', 'Aksi']">
-                {{-- @php
-                    $no = ($kriterias->currentPage() - 1) * $kriterias->perPage() + 1;
-                @endphp --}}
                 @foreach ($kriterias as $krt)
                     <x-table.table-row>
                         <td class="tableBody">{{$krt->kode}}</td>
                         <td class="tableBody">{{$krt->nama}}</td>
-                        <td class="tableBody">{{$krt->bobot}}</td>
+                        <td class="tableBody">{{number_format($krt->bobot, 3)}}</td>
                         <td class="tableBody">{{$krt->jenis}}</td>
                         <td class="tableBody">
-                            {{-- <form action="penduduk/{{$krt->penduduk_id}}" method="post" class="flex items-center gap-2"> --}}
-                                <a href="bantuan/kriteria/{{$krt->kode}}" class="bg-blue-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-blue-600 hover:text-white">Detail</a>
-                                {{-- <a href="penduduk/{{$krt->penduduk_id}}/edit" class="bg-yellow-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-yellow-300">Ubah</a> --}}
-                                {{-- @csrf --}}
-                                {{-- @method('DELETE') --}}
-                                {{-- <input type="hidden" name="updated_at" value="{{ $krt->updated_at }}">
-                                <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus data?')" class="bg-red-400 text-[12px] text-neutral-950 py-[6px] px-2 rounded-sm hover:bg-red-600 hover:text-white">Hapus</button> --}}
-                            {{-- </form> --}}
+                            <a href="kriteria/{{$krt->kode}}" class="bg-blue-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-blue-600 hover:text-white">Detail</a>
+                            <a href="kriteria/{{$krt->kode}}/edit" class="bg-yellow-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-yellow-300">Ubah</a>
                         </td>
                     </x-table.table-row>
-                    {{-- @php
-                        $no++;
-                    @endphp --}}
                 @endforeach
             </x-table.data-table>
         </div>
         <div class="flex justify-end items-center w-full py-5 px-3 border-b">
-            {{-- <p class="text-sm md:text-lg ml-5 md:ml-10">Data Kriteria</p> --}}
             <a href="{{ route('bantuan.alternatif') }}" class="bg-blue-700 text-sm text-white font-bold py-2 px-4 mr-5 md:mr-10 rounded">Selanjutnya</a>
         </div>
     </div>
@@ -77,20 +61,13 @@
 
         row.innerHTML = `
         <x-table.table-row>
-                    <td class="px-6 border-b lg:py-2 bg-white">${item.nama}</td>
-                    <td class="tableBody">${item.NIK}</td>
-                    <td class="tableBody">${item.NKK}</td>
-                    <td class="px-6 lg:py-2 text-nowrap border-b bg-white">${item.tgl_lahir}</td>
-                    <td class="tableBody">${item.jenis_kelamin}</td>
-                    <td class="tableBody">${item.hubungan_keluarga}</td>
+                    <td class="tableBody">${item.kode}</td>
+                    <td class="tableBody">${item.nama}</td>
+                    <td class="tableBody">${item.bobot}</td>
+                    <td class="tableBody">${item.jenis}</td>
                     <td class="tableBody">
-                        <form action="penduduk/${item.penduduk_id}" method="post" class="flex items-center gap-2">
-                            <a href="penduduk/${item.penduduk_id}" class="bg-blue-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-blue-600 hover:text-white">Detail</a>
-                            <a href="penduduk/${item.penduduk_id}/edit" class="bg-yellow-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-yellow-300">Ubah</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="confirm('Apakah anda yakin ingin menghapus data?')" class="bg-red-400 text-[12px] text-neutral-950 py-[6px] px-2 rounded-sm hover:bg-red-600 hover:text-white">Hapus</button>
-                        </form>
+                        <a href="penduduk/${item.penduduk_id}" class="bg-blue-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-blue-600 hover:text-white">Detail</a>
+                        <a href="penduduk/${item.penduduk_id}/edit" class="bg-yellow-400 text-[12px] text-neutral-950 py-[5px] px-2 rounded-sm hover:bg-yellow-300">Ubah</a>
                     </td>
         </x-table.table-row>
     `;

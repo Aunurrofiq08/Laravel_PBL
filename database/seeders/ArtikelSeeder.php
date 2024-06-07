@@ -27,8 +27,9 @@ class ArtikelSeeder extends Seeder
                 dukungan dari pemerintah setempat, serta kerjasama antara tenaga kesehatan dan masyarakat. Dengan demikian,
                 peningkatan angka pengunjung ini menjadi cerminan dari komitmen bersama untuk meningkatkan kualitas hidup dan
                 kesehatan keluarga di wilayah tersebut.',
-                'tag' => 'informasi,kegiatan',
+                'tag' => '"kegiatan,informasi',
                 'foto_artikel' => 'DAsCsDBnMKIDUDoGUOAA5uKHppcHCmqlpEsQJ6Ls.jpg',
+                'created_at' => '2024-04-17',
             ], [
                 'kader_id'=> 2,
                 'judul' => 'Manfaat Imunisasi Rutin bagi Anak-Anak: Pilar Penting dalam Peningkatan Kesehatan Masyarakat',
@@ -36,8 +37,9 @@ class ArtikelSeeder extends Seeder
                 Dengan memberikan vaksin secara teratur, kita tidak hanya melindungi anak-anak dari penyakit yang serius,
                 tetapi juga membantu memutus rantai penularan penyakit menular. Dukungan dari kader-kader kesehatan seperti
                 Posyandu Delima Merah sangatlah penting dalam mensosialisasikan manfaat imunisasi kepada masyarakat.',
-                'tag' => 'ibu_hamil,ibu_menyusui,balita',
+                'tag' => 'balita,ibu_menyusui,ibu_hamil',
                 'foto_artikel' => '16NtVyPHhGoEKybdPEjKHv76kuaL8W1MhWs9vaMu.jpg',
+                'created_at' => '2024-04-22',
             ], [
                 'kader_id'=> 2,
                 'judul' => 'Peran Posyandu dalam Pemberdayaan Masyarakat: Membangun Kesadaran akan Kesehatan Keluarga',
@@ -47,6 +49,7 @@ class ArtikelSeeder extends Seeder
                 Inisiatif seperti Posyandu Delima Merah membantu meningkatkan kualitas hidup masyarakat di sekitarnya.',
                 'tag' => 'informasi,edukasi',
                 'foto_artikel' => 'ZOqhuG56ATKk12u2HRl8Jx9liTaPR31T4BVIu0c2.jpg',
+                'created_at' => '2024-05-06',
             ], [
                 'kader_id'=> 2,
                 'judul' => 'Penyuluhan Gizi Seimbang: Kunci Utama Menuju Keluarga Sehat dan Bahagia',
@@ -54,8 +57,9 @@ class ArtikelSeeder extends Seeder
                 masyarakat dapat memahami pentingnya konsumsi makanan bergizi untuk menjaga kesehatan tubuh. Posyandu Delima Merah dan
                 kader-kader kesehatannya memainkan peran vital dalam menyebarkan informasi tentang pola makan sehat dan
                 membantu masyarakat dalam mencapai gaya hidup yang lebih sehat.',
-                'tag' => 'informasi,ibu_hamil,ibu_menyusui,edukasi',
+                'tag' => 'informasi,edukasi,ibu_menyusui,ibu_hamil',
                 'foto_artikel' => 'OV0Cd2b2K1BoTBPMMdTNkFijFot0glkB6jCouRXp.jpg',
+                'created_at' => '2024-05-17',
             ],
 
         ];
