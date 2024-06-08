@@ -8,7 +8,7 @@
                 <p class="text-lg mx-10">Form Pemeriksaan Bayi</p>
             </div>
 
-            <div class="grid md:grid-cols-2 my-[30px] mx-10 gap-x-[101px]">
+            <div class="grid md:grid-cols-2 my-[30px] mx-5 lg:mx-10 gap-x-[101px]">
 
                 {{-- KOLOM KANAN --}}
                 <div class="md:col-span-1 flex flex-col gap-[23px] order-2">
@@ -16,7 +16,7 @@
 
                     <div class="flex flex-col w-full h-fill gap-[20px]" id="">
                         <p class="text-base text-neutral-950">Tanggal Pemeriksaan</p>
-                        <p>{{ now()->day }} - {{ now()->format('F') }} - {{ now()->year }}</p>
+                        <p>{{ now('Asia/Jakarta')->locale('id')->day }} - {{ now('Asia/Jakarta')->locale('id')->translatedFormat('F') }} - {{ now('Asia/Jakarta')->locale('id')->year }}</p>
                     </div>
 
                     {{-- LINGKAR KEPALA --}}

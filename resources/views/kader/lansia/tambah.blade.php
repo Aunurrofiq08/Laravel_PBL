@@ -8,7 +8,7 @@
                 <p class="text-lg mx-10">Form Pemeriksaan Lansia</p>
             </div>
 
-            <div class="grid md:grid-cols-2 my-[30px] mx-10 gap-x-[101px]">
+            <div class="grid md:grid-cols-2 my-[30px] mx-5 lg:mx-10 gap-x-[101px]">
                 <div class="md:col-span-1 flex flex-col gap-[23px]">
                     <h2 class="font-bold text-lg">Data Lansia</h2>
                     <div class="flex border border-stone-400 rounded-md px-2 py-2">
@@ -46,7 +46,7 @@
                     <h2 class="font-bold text-lg">Data Pemeriksaan</h2>
                     <div class="flex flex-col w-full h-fill gap-[20px]" id="page_1">
                         <p class="text-base text-neutral-950">Tanggal Pemeriksaan</p>
-                        <p>{{ now()->day }}-{{ now()->format('F') }}-{{ now()->year }}</p>
+                        <p>{{ now('Asia/Jakarta')->locale('id')->day }} - {{ now('Asia/Jakarta')->locale('id')->translatedFormat('F') }} - {{ now('Asia/Jakarta')->locale('id')->year }}</p>
                     </div>
 
                     <div class="flex flex-col w-full h-fill gap-[20px] hidden" id="page_1">
